@@ -12,7 +12,7 @@ export const dateToString = d => {
     return '*';
   }
 
-  const [day, month, date, year, ...rest] = d.toString().split(' ');
+  const [_, month, __, year] = d.toString().split(' ');
   return `${month.toUpperCase()}-${year.slice(2, 4)}`
 }
 
