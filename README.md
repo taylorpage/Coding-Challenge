@@ -15,9 +15,9 @@ Redux store.
 
 User input has the following form
 
-    AAAA BBBB CCC-XX DDD-XX EEE
+    AAAA BBBB CCC-YY DDD-YY EEE
 
-AAA is the starting account (* means first account of source file), BBB is the ending account(* means last account of source file), CCC-YY is the first period (* means first period of source file), DDD-YY is the last period (* means last period of source file), EEE is output format (values can be HTML or CSV).
+AAAA is the starting account (* means first account of source file), BBBB is the ending account(* means last account of source file), CCC-YY is the first period (* means first period of source file), DDD-YY is the last period (* means last period of source file), EEE is output format (values can be HTML or CSV).
 
 *Examples of user inputs*
 
