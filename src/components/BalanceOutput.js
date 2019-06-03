@@ -76,9 +76,23 @@ BalanceOutput.propTypes = {
 };
 
 export default connect(state => {
-  let balance = [];
-
-  /* YOUR CODE GOES HERE */
+  const { userInput, journalEntries, accounts } = state;
+  let balance = journalEntries
+    .filter( entry => {
+      return (
+        ( userInput.startAccount === '*' || entry.ACCOUNT >= userInput.startAccount ) &&
+        ( userInput.endAccount === '*' || entry.ACCOUNT <= userInput.endAccount ) &&
+        ( userInput.startPeriod === '*' || entry.PERIOD >= userInput.startPeriod ) &&
+        ( userInput.endPeriod === '*' || entry.PERIOD <= userInput.endPeriod )
+      );
+    })
+    .map( entry => {
+      const account = accounts.find( account => account.ACCOUNT === entry.ACCOUNT );
+      entry.DESCRIPTION = account ? account.LABEL : 'N/A';
+      entry.BALANCE = entry.DEBIT - entry.CREDIT;
+      return entry;
+    })
+    .sort(( a, b ) => a.ACCOUNT - b.ACCOUNT );
 
   const totalCredit = balance.reduce((acc, entry) => acc + entry.CREDIT, 0);
   const totalDebit = balance.reduce((acc, entry) => acc + entry.DEBIT, 0);
